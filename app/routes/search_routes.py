@@ -45,3 +45,13 @@ def get_all_documents():
         })
 
     return formatted
+
+from app.ingestion.race_ingestor import ingest_season
+
+@router.post("/ingest-season/{year}")
+def ingest_year(year: int):
+    ingest_season(year)
+
+    return {
+        "message": f"{year} season ingested successfully"
+    }

@@ -1,10 +1,13 @@
 # F1 AI Semantic Search Assistant
 
-AI-powered semantic search system for Formula 1 race intelligence using:
+AI-powered semantic and hybrid retrieval system for Formula 1 race intelligence using real F1 race data, vector embeddings, and metadata-aware search.
+
+Built using:
 
 - FastAPI
 - Ollama
 - ChromaDB
+- FastF1
 - Local Embedding Models
 - Vector Search
 
@@ -12,6 +15,8 @@ This project demonstrates:
 - embeddings
 - vector databases
 - semantic search
+- metadata filtering
+- hybrid retrieval
 - retrieval pipelines
 - AI backend architecture
 
@@ -22,6 +27,11 @@ This project demonstrates:
 - Local embedding generation using Ollama
 - Persistent vector storage using ChromaDB
 - Semantic similarity search
+- Metadata-based filtering
+- Hybrid retrieval architecture
+- Automated FastF1 race ingestion pipeline
+- Real F1 race results from 2020+
+- Structured + semantic retrieval
 - FastAPI backend APIs
 - Swagger API documentation
 - F1-themed retrieval dataset
@@ -36,6 +46,8 @@ This project demonstrates:
 | Embedding Model | all-minilm (Ollama) |
 | Vector Database | ChromaDB |
 | Local Model Runtime | Ollama |
+| F1 Data Source | FastF1 |
+| Data Processing | Pandas |
 | Language | Python 3.12 |
 
 ---
@@ -55,6 +67,9 @@ f1-ai-assistant/
 │   │   ├── embedding_service.py
 │   │   ├── chroma_service.py
 │   │   └── search_service.py
+│   │
+│   ├── ingestion/
+│   │   └── race_ingestor.py
 │   │
 │   ├── data/
 │   │   └── sample_races.py

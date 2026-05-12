@@ -14,8 +14,10 @@ def add_race_documents(races):
             metadatas=[
                 {
                     "team": race["team"],
+                    "driver": race["driver"],
                     "year": race["year"],
-                    "track": race["track"]
+                    "track": race["track"],
+                    "position": race["position"]
                 }
             ]
         )
@@ -36,6 +38,30 @@ def metadata_search(team: str, year: int):
             "$and": [
                 {"team": team},
                 {"year": year}
+            ]
+        }
+    )
+
+    return results
+
+# TODO: Finish the route
+
+def hybrid_search(
+    query: str,
+    driver: str,
+    year: int,
+    position: int
+):
+    query_embedding = generate_embedding(query)
+
+    results = collection.query(
+        query_embeddings=[query_embedding],
+        n_results=5,
+        where={
+            "$and": [
+                {"driver": driver},
+                {"year": year},
+                {"position": position}
             ]
         }
     )
