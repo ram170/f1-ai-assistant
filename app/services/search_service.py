@@ -29,3 +29,15 @@ def semantic_search(query: str):
     )
 
     return results
+
+def metadata_search(team: str, year: int):
+    results = collection.get(
+        where={
+            "$and": [
+                {"team": team},
+                {"year": year}
+            ]
+        }
+    )
+
+    return results

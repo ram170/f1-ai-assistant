@@ -3,7 +3,8 @@ from app.data.sample_races import sample_races
 from app.services.chroma_service import get_collection
 from app.services.search_service import (
     add_race_documents,
-    semantic_search
+    semantic_search,
+    metadata_search
 )
 
 router = APIRouter()
@@ -19,6 +20,12 @@ def ingest_data():
 @router.get("/search")
 def search(query: str):
     results = semantic_search(query)
+
+    return results
+
+@router.get("/metadata-search")
+def search_by_metadata(team: str, year: int):
+    results = metadata_search(team, year)
 
     return results
 
