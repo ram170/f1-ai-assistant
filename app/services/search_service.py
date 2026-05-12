@@ -10,7 +10,14 @@ def add_race_documents(races):
         collection.add(
             ids=[race["id"]],
             documents=[race["text"]],
-            embeddings=[embedding]
+            embeddings=[embedding],
+            metadatas=[
+                {
+                    "team": race["team"],
+                    "year": race["year"],
+                    "track": race["track"]
+                }
+            ]
         )
 
 def semantic_search(query: str):
