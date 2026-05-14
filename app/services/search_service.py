@@ -1,5 +1,9 @@
 from app.services.embedding_service import generate_embedding
 from app.services.chroma_service import get_collection
+from app.services.llm_service import generate_response
+from app.services.query_router_service import determine_query_type
+from app.services.analytics_service import run_analytics
+from app.services.retrieval_service import retrieval_pipeline
 
 collection = get_collection()
 
@@ -67,3 +71,12 @@ def hybrid_search(
     )
 
     return results
+
+def ask_question(query: str):
+    query_type = determine_query_type(query)
+    print("Determined query type:", query_type)
+
+    if query_type == "analytics":
+        return run_analytics(query)
+    else:
+        return retrieval_pipeline(query)

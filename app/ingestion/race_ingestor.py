@@ -1,6 +1,7 @@
 import fastf1
 
 from app.services.search_service import add_race_documents
+from app.services.race_summary_service import generate_race_summary
 
 
 def build_race_document(row, race_name, year):
@@ -8,10 +9,12 @@ def build_race_document(row, race_name, year):
 
     driver = f"{row['FirstName']} {row['LastName']}"
 
-    text = (
-        f"{driver} finished P{position} "
-        f"for {row['TeamName']} at the "
-        f"{year} {race_name} Grand Prix."
+    text = generate_race_summary(
+        driver=driver,
+        team=row["TeamName"],
+        position=position,
+        race_name=race_name,
+        year=year
     )
 
     return {
@@ -26,7 +29,7 @@ def build_race_document(row, race_name, year):
 
 
 def ingest_season(year: int):
-    schedule = fastf1.get_event_schedule(year)
+    schedule = fastf1.get_event_schedule(year=year, include_testing=False)
 
     all_documents = []
 
