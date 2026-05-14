@@ -35,6 +35,9 @@ This project demonstrates:
 - FastAPI backend APIs
 - Swagger API documentation
 - F1-themed retrieval dataset
+- AI-powered natural language question answering
+- analytics pipelines
+- Query routing and orchestration
 
 ---
 
@@ -228,6 +231,21 @@ Returns all stored documents from ChromaDB.
 
 ---
 
+## Ask Questions (AI Query Engine)
+
+### GET `/ask`
+
+Natural language Formula 1 question-answering API.
+
+This endpoint:
+- classifies the query
+- routes between retrieval and analytics pipelines
+- performs semantic search using embeddings
+- applies metadata filtering
+- generates human-readable AI responses
+
+---
+
 # How Semantic Search Works
 
 1. Race documents are converted into embeddings
@@ -277,6 +295,14 @@ Even though exact keywords differ.
 - Retrieval Systems
 - RAG Foundations
 - AI Backend Architecture
+- Query routing
+- Semantic retrieval
+- Hybrid AI pipelines
+- Metadata filtering
+- LLM-powered query parsing
+- Analytics orchestration
+- Natural language response generation
+- Vector similarity search
 
 ---
 

@@ -4,8 +4,10 @@ from app.services.chroma_service import get_collection
 from app.services.search_service import (
     add_race_documents,
     semantic_search,
-    metadata_search
+    metadata_search,
+    ask_question
 )
+
 
 router = APIRouter()
 
@@ -55,3 +57,7 @@ def ingest_year(year: int):
     return {
         "message": f"{year} season ingested successfully"
     }
+
+@router.get("/ask")
+def ask(query: str):
+    return ask_question(query)
