@@ -11,7 +11,7 @@ def form_dynamic_where_clause(filters: dict):
         if filters.get("year"):
             where_conditions.append({"year": filters["year"]})
 
-        if filters.get("team"):
+        if filters.get("team") and filters.get("team") != "null":
             where_conditions.append({"team": filters["team"]})
 
         if filters.get("driver"):
