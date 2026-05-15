@@ -1,4 +1,5 @@
 import fastf1
+import time
 
 from app.services.search_service import add_race_documents
 from app.services.race_summary_service import generate_race_summary
@@ -33,7 +34,7 @@ def ingest_season(year: int):
 
     all_documents = []
 
-    for _, event in schedule.iterrows():
+    for index, (_, event) in enumerate(schedule.iterrows(), start=1):
         race_name = event["EventName"]
 
         try:
@@ -56,6 +57,10 @@ def ingest_season(year: int):
 
         except Exception as e:
             print(f"Failed for {race_name}: {e}")
+
+        if index % 5 == 0:
+            print("Sleeping for 10 seconds after processing 5 events...")
+            time.sleep(10)
 
     add_race_documents(all_documents)
 

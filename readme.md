@@ -135,6 +135,7 @@ OR manually:
 
 ```bash
 pip install fastapi uvicorn chromadb ollama pydantic
+pip install celery redis
 ```
 
 ---
@@ -169,6 +170,7 @@ Keep this terminal running.
 
 ```bash
 ollama pull all-minilm
+ollama pull llama3.2
 ```
 
 ---
@@ -186,7 +188,24 @@ Application runs at:
 ```text
 http://127.0.0.1:8000
 ```
+---
 
+Start Redis
+
+```bash
+brew services start redis
+```
+
+---
+
+Start Celery server:
+
+```bash
+celery -A app.tasks worker --loglevel=info
+# celery -A app.celery_app.celery worker \
+# --pool=solo \
+# --loglevel=info
+```
 ---
 
 # Swagger API Docs
